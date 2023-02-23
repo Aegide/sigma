@@ -551,7 +551,13 @@ class SigmaConditionParser:
                 pos_op = tokens.index(operator[0])
                 tok_op = tokens[pos_op]
                 if operator[1] == 0:    # operator
+                    # sigma.parser.condition.NodeSubexpression
+                    # convertId()
                     treenode = operator[2](self.sigmaParser, tok_op)
+                    print(" ")
+                    print("parseSearch(SigmaConditionParser)")
+                    print(">>>", treenode)
+                    print(" ")
                     tokens = tokens[:pos_op] + treenode + tokens[pos_op + 1:]
                 elif operator[1] == 1:    # operator value
                     pos_val = pos_op + 1

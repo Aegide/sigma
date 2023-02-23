@@ -1,0 +1,7 @@
+title: Example for elastic-search backend (AND + int)
+detection:
+    selection:
+        - ObjectName|contains|all:
+            - 100
+            - 200
+    condition: selection

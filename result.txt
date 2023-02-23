@@ -1,0 +1,48 @@
+ 
+ 
+--(es-qs)--(OR)--(str)--
+ 
+parseSearch(SigmaConditionParser)
+>>> [ Subexpression: ['[ AND Condition: ["(\'ObjectName\', [\'*100*\', \'*200*\'])"] ]'] ]
+ 
+ObjectName:(*100* OR *200*)
+ 
+ 
+--(es-qs)--(OR)--(int)--
+An unsupported feature is required for this Sigma rule (test_or_int.yml): List values must be strings or numbers
+ 
+parseSearch(SigmaConditionParser)
+>>> [ Subexpression: ['[ AND Condition: ["(\'ObjectName\', [None, None])"] ]'] ]
+ 
+ 
+ 
+--(es-qs)--(AND)--(str)--
+ 
+parseSearch(SigmaConditionParser)
+>>> [ Subexpression: ['[ AND Condition: [\'[ AND Condition: ["(\\\'ObjectName\\\', \\\'*100*\\\')", "(\\\'ObjectName\\\', \\\'*200*\\\')"] ]\'] ]'] ]
+ 
+(ObjectName:*100* AND ObjectName:*200*)
+ 
+ 
+--(es-qs)--(AND)--(int)--
+ 
+parseSearch(SigmaConditionParser)
+>>> [ Subexpression: ['[ AND Condition: [\'[ AND Condition: ["(\\\'ObjectName\\\', None)", "(\\\'ObjectName\\\', None)"] ]\'] ]'] ]
+ 
+NOT _exists_:ObjectName
+ 
+ 
+--(es-qs)--(ALL)--(str)--
+ 
+parseSearch(SigmaConditionParser)
+>>> [ Subexpression: ['[ AND Condition: [\'[ AND Condition: ["(\\\'ObjectName\\\', \\\'100\\\')", "(\\\'ObjectName\\\', \\\'200\\\')"] ]\'] ]'] ]
+ 
+(ObjectName:100 AND ObjectName:200)
+ 
+ 
+--(es-qs)--(ALL)--(int)--
+ 
+parseSearch(SigmaConditionParser)
+>>> [ Subexpression: ['[ AND Condition: [\'[ AND Condition: ["(\\\'ObjectName\\\', 100)", "(\\\'ObjectName\\\', 200)"] ]\'] ]'] ]
+ 
+(ObjectName:100 AND ObjectName:200)

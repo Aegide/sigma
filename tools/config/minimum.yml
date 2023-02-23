@@ -1,0 +1,6 @@
+title: Minimal config
+order: 20
+backends:
+    - es-qs
+    - es-dsl
+    - es-rule
